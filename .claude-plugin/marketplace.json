@@ -1,0 +1,14 @@
+{
+  "name": "signal-flag-plugins",
+  "description": "Signal Flag session exploration for Claude Code.",
+  "owner": {
+    "name": "ReSim"
+  },
+  "plugins": [
+    {
+      "name": "signal-flag",
+      "source": "./plugins/signal-flag",
+      "version": "0.0.4"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "python_version": "3.12",
+  "requirements_sha256": "274c6554bf5a1bbab4752003a13b9dea1a957c5a54c95be5062c0a6bf13f1c02",
+  "sha256": "086ba1716d08ca3401b9716d8b2ea85b7ffd75a6ac2ae69e1db1a9638c420a2c",
+  "source_revision": "10851de9431451dec0ec8530bcb6d614de3c1b62",
+  "wheel": "field_sessions_parser-0.1.2-py3-none-any.whl"
+}
