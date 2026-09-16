@@ -159,4 +159,4 @@ validation gates.
 
 ## Reader provenance
 
-The bundled reader wheel and dependency lock are verified against `reader/manifest.json` before installation. Its `source_repository` and full `source_revision` identify the committed source used to build the wheel. The source repository remains private pending explicit publication approval. This 0.0.6 release candidate bundles reader 0.2.2 unchanged from that build; installation does not require cloning the source repository.
+The bundled reader wheel and dependency lock are verified against `reader/manifest.json` before installation. Its `source_repository` and full `source_revision` identify the committed source used to build the wheel. The source repository remains private pending explicit publication approval. Published plugin version 0.0.6 bundles reader 0.2.2 unchanged from that build; installation does not require cloning the source repository.

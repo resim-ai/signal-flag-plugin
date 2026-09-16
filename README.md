@@ -53,4 +53,4 @@ claude plugin validate .
 claude plugin validate ./plugins/signal-flag
 ```
 
-Release candidate 0.0.6 includes the MCAP-only reader 0.2.2, built from the exact source revision recorded with artifact hashes in [the manifest](plugins/signal-flag/reader/manifest.json). The source, tests and release tooling live in [field-sessions-parser](https://github.com/resim-ai/field-sessions-parser), which remains private pending explicit publication approval. The plugin bundles the wheel unchanged from that build and needs no source checkout; customers keep their metrics-build code in their own repository. This candidate has not been published.
+Published plugin version 0.0.6 includes the MCAP-only reader 0.2.2, built from the exact source revision recorded with artifact hashes in [the manifest](plugins/signal-flag/reader/manifest.json). The source, tests and release tooling live in [field-sessions-parser](https://github.com/resim-ai/field-sessions-parser), which remains private pending explicit publication approval. The plugin bundles the wheel unchanged from that build and needs no source checkout; customers keep their metrics-build code in their own repository.
