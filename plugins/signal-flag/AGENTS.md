@@ -3,7 +3,7 @@
 This is a Claude Code plugin. Preserve `.claude-plugin/plugin.json` and the
 existing marketplace/account configuration; do not add Codex plugin metadata.
 
-`commands/` contains the workflow entry point and explicit reader setup command. `scripts/setup_reader.py` verifies the bundled `reader/` wheel, dependency lock and provenance manifest, then creates an isolated Python 3.12 inspection runtime. `scripts/tests/test_setup_reader.py` covers integrity and bootstrap isolation. The `resim-ai/field-sessions-parser` repository owns the reader source and release artifacts and remains private pending explicit publication approval; do not patch wheel contents or maintain another reader implementation here.
+`commands/` contains the workflow entry point and explicit reader setup command. `scripts/setup_reader.py` verifies the bundled `reader/` wheel, dependency lock and provenance manifest, then creates an isolated Python 3.12 inspection runtime. `scripts/tests/test_setup_reader.py` covers integrity and bootstrap isolation. The `resim-ai/field-sessions-parser` repository owns the reader source and release artifacts and is public; do not patch wheel contents or maintain another reader implementation here.
 
 No install hooks, policy changes, local recording copies or SDK installation are
 part of native setup. Run the setup tests with Python's standard-library unittest.
@@ -20,4 +20,4 @@ The reader requires exact HTTP206 byte ranges and rejects ignored-Range full res
 
 The native reader supports MCAP only, including JSON, ROS 1, ROS 2 and Protobuf messages inside MCAP. Keep the bootstrap smoke imports aligned with those decoding dependencies; do not require HDF5 or Parquet libraries. The public command loads the served workflow through `get_skill`, without a separate MCP prompt surface.
 
-The bundled reader 0.2.2 provides `summary` for metadata-only discovery. `inspect` traverses and decodes the complete recording; never use it as default discovery. Summary failures do not authorize full scans, recovery or local recording downloads.
+The bundled reader 0.2.3 provides `summary` for metadata-only discovery. `inspect` traverses and decodes the complete recording; never use it as default discovery. Summary failures do not authorize full scans, recovery or local recording downloads.

@@ -1,6 +1,6 @@
 {
   "name": "signal-flag",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Signal Flag session exploration through MCP, with an isolated Python reader setup for recording inspection.",
   "author": {
     "name": "ReSim Engineering",

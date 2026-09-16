@@ -12,7 +12,7 @@ bundled native recording reader; it has no install hooks or workflow copy.
 The served resource `resim://skills/explore-field-sessions/SKILL.md` is the same
 workflow. Session context comes from the open Chrome app/S3 tab.
 
-The workflow registers folders as sessions, prepares customer metrics in the robot repository, directs the agent to build/push through the customer's AWS MCP, and verifies publication before registration. Before AWS writes or image publication, the person confirms the verified AWS identity and exact registry/repository destination as described below. The human separately approves evaluations at the client's permission prompt. Later SQL-only metrics score existing evaluations.
+The workflow registers folders as sessions, prepares customer metrics in the robot repository, directs the agent to build/push through the customer's AWS MCP, and verifies publication before registration. Before AWS writes or image publication, the person confirms the verified AWS identity and exact registry/repository destination as described below. The human separately approves the exact evaluation request in chat; honor any client permission prompt when presented. Later SQL-only metrics score existing evaluations.
 
 Use the plugin command to load the served skill through `get_skill`; there is no separate MCP prompt entry.
 
@@ -33,7 +33,7 @@ configured environment; staff membership is not required.
 
 Signal Flag requires a read-only effective-identity check before AWS writes or image push. Use an available AWS MCP identity tool, or `aws sts get-caller-identity` when the CLI is available and uses the same verified profile and effective credentials as the AWS/Finch MCP publication tools. A CLI identity from unrelated credentials does not verify the MCP's identity. Show the person the returned AWS account ID and caller/role ARN, actual profile (or identified credential source if unnamed), region, and full destination registry/repository URI; wait for explicit confirmation of that identity and destination. If the destination registry belongs to another account, show both caller and destination account IDs explicitly; an authorized cross-account push is valid. Reuse explicit confirmation only while the verified identity, credential source, region and destination remain unchanged. An existing login, default profile, or supplied URI alone is neither identity verification nor approval. If the publication identity cannot be verified, stop before AWS writes and explain the missing capability.
 
-Prepare and test the image first where those steps do not write to AWS. Any change to account, role, profile/credential source, region, or destination invalidates confirmation; verify again and obtain a new confirmation before writes. The agent then performs the authorized build/push through the customer's AWS MCP and verifies the remote image. This does not authorize a local command fallback, new permissions, or evaluation: evaluations retain their separate client approval.
+Prepare and test the image first where those steps do not write to AWS. Any change to account, role, profile/credential source, region, or destination invalidates confirmation; verify again and obtain a new confirmation before writes. The agent then performs the authorized build/push through the customer's AWS MCP and verifies the remote image. This does not authorize a local command fallback, new permissions, or evaluation: evaluations require separate explicit approval of the exact request in chat.
 
 ## Install
 
@@ -89,7 +89,7 @@ rather than compiling dependencies or changing pins.
 
 The plugin bundles a `field-sessions-parser` wheel, native dependency hash lock, and source-commit/checksum manifest under `reader/`. The package is not fetched from PyPI and needs no private rerun checkout or `PYTHONPATH`. Native recording inspection supports MCAP files with JSON, ROS 1, ROS 2 or Protobuf messages; separate ROS bag, text, CSV, Parquet and HDF5 files are not supported. ROS decoding dependencies remain included for messages inside MCAP.
 
-After checking session metadata, compatible builds and relevant customer code, use `<returned-cli> summary <recording.mcap>` when recording metadata is needed. Reader 0.2.2 returns header, channels, schema definitions and recorded counts/time bounds without traversing, decompressing or decoding messages. Missing statistics are unknown; schema definitions do not establish observed values or signal meaning. Missing, oversized or malformed summaries fail without a scan or full-download fallback. Range caches can fetch neighboring payload bytes, so this is not a strict total-transfer budget.
+After checking session metadata, compatible builds and relevant customer code, use `<returned-cli> summary <recording.mcap>` when recording metadata is needed. Reader 0.2.3 returns header, channels, schema definitions and recorded counts/time bounds without traversing, decompressing or decoding messages. Missing statistics are unknown; schema definitions do not establish observed values or signal meaning. Missing, oversized or malformed summaries fail without a scan or full-download fallback. Range caches can fetch neighboring payload bytes, so this is not a strict total-transfer budget.
 
 `<returned-cli> inspect <recording.mcap>` decodes the complete recording. Topic-filtered `iter_messages` can also traverse the entire file; neither is a bounded discovery sample. Full scans belong in the metrics job by default. A discovery sample needs a concrete purpose and bounded read scope; this reader has no bounded sampling API.
 
@@ -159,4 +159,4 @@ validation gates.
 
 ## Reader provenance
 
-The bundled reader wheel and dependency lock are verified against `reader/manifest.json` before installation. Its `source_repository` and full `source_revision` identify the committed source used to build the wheel. The source repository remains private pending explicit publication approval. Published plugin version 0.0.6 bundles reader 0.2.2 unchanged from that build; installation does not require cloning the source repository.
+The bundled reader wheel and dependency lock are verified against `reader/manifest.json` before installation. Its `source_repository` and full `source_revision` identify the committed source used to build the wheel. The source repository is public. Plugin version 0.0.7 bundles reader 0.2.3 unchanged from that build; installation does not require cloning the source repository.
