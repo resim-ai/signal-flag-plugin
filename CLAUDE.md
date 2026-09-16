@@ -31,3 +31,5 @@ Preserve the reader wheel and lock hashes in the provenance manifest. Do not pat
 `.claude-plugin/` holds the marketplace manifest. `plugins/signal-flag/` holds the plugin, commands, reader bundle, setup script, tests and container references.
 
 `plugins/signal-flag/reader/` contains the 0.2.2 wheel, native dependency lock and provenance manifest. The `resim-ai/field-sessions-parser` repository owns reader source and releases and remains private pending explicit publication approval. Keep its repository URL and immutable source revision in the bundled provenance manifest.
+
+The command loads focused served procedures for signal semantics and customer build authoring. It requires explicit human chat approval of the concrete evaluation request separately from registry confirmation, preserves exact historical chart scope and saved human edits, and excludes interactive message sampling. Changes to these instructions do not imply a reader bundle upgrade.

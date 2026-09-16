@@ -5,7 +5,7 @@ argument-hint: "[check]"
 
 This is explicit setup for native recording inspection. Registered-session
 metadata, folder inventory, identity and Foxglove-link tools do not need it.
-Inspecting MCAP channels/schemas/values does need a reader runtime. No install hook
+Inspecting MCAP summary channels/schemas does need a reader runtime. No install hook
 runs automatically.
 
 Run `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/setup_reader.py"`; if the argument is
@@ -27,7 +27,7 @@ If an existing `UV_CACHE_DIR` or
 an authorized location; do not change permissions or sandbox rules. The user can
 set `SIGNAL_FLAG_READER_HOME` to an absolute writable state directory.
 
-Report the actual result and use the returned Python path for subsequent native reader snippets. Use the returned CLI with `summary <recording.mcap>` for recorded metadata without message traversal. `inspect` decodes the complete recording and is not a default discovery step. A missing or malformed summary fails without a scan fallback; range caching can fetch neighboring bytes and is not a strict transfer budget. No rerun checkout or PYTHONPATH is needed. This does not install `resim-open-core`, prove AWS access, prove HTTP Range works, or authorize execution of customer robot code. A blocked download or truncated signed-HTTPS response is a runtime limitation; do not download an MCAP locally or bypass the proxy/hooks.
+Report the actual result and use the returned Python path for the summary-only API in `inspect-session-recordings`. Do not assume the installed CLI has `summary`; the served API also supports older bundles. `inspect` traverses messages and is not a discovery command. Interactive message sampling is unsupported. A missing or malformed summary must not fall back to a scan; range caching may fetch neighboring bytes and is not a total transfer budget. No rerun checkout or PYTHONPATH is needed. Setup does not install the Linux SDK, prove AWS or HTTP Range access, or authorize robot-code execution. A blocked download or truncated response remains a runtime limitation; do not download an MCAP locally or bypass controls.
 
 For SDK/build tests, discover the customer's connected AWS/Finch MCP tools and
 their actual container execution/build/push capabilities. A connected server or

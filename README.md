@@ -53,4 +53,6 @@ claude plugin validate .
 claude plugin validate ./plugins/signal-flag
 ```
 
-Published plugin version 0.0.6 includes the MCAP-only reader 0.2.2, built from the exact source revision recorded with artifact hashes in [the manifest](plugins/signal-flag/reader/manifest.json). The source, tests and release tooling live in [field-sessions-parser](https://github.com/resim-ai/field-sessions-parser), which remains private pending explicit publication approval. The plugin bundles the wheel unchanged from that build and needs no source checkout; customers keep their metrics-build code in their own repository.
+Release candidate 0.0.7 includes the MCAP-only reader 0.2.2, built from the exact source revision recorded with artifact hashes in [the manifest](plugins/signal-flag/reader/manifest.json). The source, tests and release tooling live in [field-sessions-parser](https://github.com/resim-ai/field-sessions-parser). The plugin bundles the wheel unchanged from that build and needs no source checkout; customers keep their metrics-build code in their own repository. This candidate has not been published.
+
+Workflow guidance in this checkout requires explicit human chat approval of a concrete evaluation request. It supports summary metadata and requested playback; interactive message sampling is excluded. Historical chart edits preserve their exact evaluation scope and do not publish reusable configuration by themselves.

@@ -21,3 +21,5 @@ The reader requires exact HTTP206 byte ranges and rejects ignored-Range full res
 The native reader supports MCAP only, including JSON, ROS 1, ROS 2 and Protobuf messages inside MCAP. Keep the bootstrap smoke imports aligned with those decoding dependencies; do not require HDF5 or Parquet libraries. The public command loads the served workflow through `get_skill`, without a separate MCP prompt surface.
 
 The bundled reader 0.2.2 provides `summary` for metadata-only discovery. `inspect` traverses and decodes the complete recording; never use it as default discovery. Summary failures do not authorize full scans, recovery or local recording downloads.
+
+The served workflow separates signal semantics from `author-session-metrics-build` and uses exact historical scope for chart edits. The command requires explicit human chat approval of a concrete evaluation request, separately from registry confirmation, and honors client prompts without treating automatic acceptance as approval. Interactive message sampling is unsupported; use the served summary-only procedure or requested Foxglove replay.

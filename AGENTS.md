@@ -9,3 +9,5 @@ Keep the plugin name `signal-flag` and marketplace name `signal-flag-plugins` st
 Write each prose paragraph on one source line. Do not add credentials, signed recording URLs, customer fixtures or internal workspace history. Validate changes with Python bootstrap tests, JSON parsing, manifest hash checks and Claude plugin validation where available. Do not claim a native or SDK test passed from bootstrap tests alone.
 
 Obtain Pete’s explicit confirmation before any public code push, tag or release. Prepare the exact repository contents and release changes for review first; prior publication or a request to update the plugin does not waive confirmation.
+
+The command loads focused served procedures for signal semantics and customer build authoring. It requires explicit human chat approval of the concrete evaluation request separately from registry confirmation, preserves exact historical chart scope and saved human edits, and excludes interactive message sampling. Changes to these instructions do not imply a reader bundle upgrade.
