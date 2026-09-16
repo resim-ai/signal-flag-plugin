@@ -53,4 +53,4 @@ claude plugin validate .
 claude plugin validate ./plugins/signal-flag
 ```
 
-Version 0.0.4 includes reader 0.1.2. The reader’s source revision and artifact hashes are recorded in [the manifest](plugins/signal-flag/reader/manifest.json). The wheel is distributed unchanged from that build.
+Version 0.0.5 includes the MCAP-only reader 0.2.0. The reader’s source revision and artifact hashes are recorded in [the manifest](plugins/signal-flag/reader/manifest.json). The wheel is distributed unchanged from that build.

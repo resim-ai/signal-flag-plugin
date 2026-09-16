@@ -31,9 +31,9 @@ configured environment; staff membership is not required.
 
 ## Confirm AWS identity and publication destination
 
-Signal Flag 0.0.4 requires a read-only effective-identity check before AWS writes or image push. Use an available AWS MCP identity tool, or `aws sts get-caller-identity` when the CLI is available and uses the same verified profile and effective credentials as the AWS/Finch MCP publication tools. A CLI identity from unrelated credentials does not verify the MCP's identity. Show the person the returned AWS account ID and caller/role ARN, actual profile (or identified credential source if unnamed), region, and full destination registry/repository URI; wait for explicit confirmation of that identity and destination. If the destination registry belongs to another account, show both caller and destination account IDs explicitly; an authorized cross-account push is valid. Reuse explicit confirmation only while the verified identity, credential source, region and destination remain unchanged. An existing login, default profile, or supplied URI alone is neither identity verification nor approval. If the publication identity cannot be verified, stop before AWS writes and explain the missing capability.
+Signal Flag requires a read-only effective-identity check before AWS writes or image push. Use an available AWS MCP identity tool, or `aws sts get-caller-identity` when the CLI is available and uses the same verified profile and effective credentials as the AWS/Finch MCP publication tools. A CLI identity from unrelated credentials does not verify the MCP's identity. Show the person the returned AWS account ID and caller/role ARN, actual profile (or identified credential source if unnamed), region, and full destination registry/repository URI; wait for explicit confirmation of that identity and destination. If the destination registry belongs to another account, show both caller and destination account IDs explicitly; an authorized cross-account push is valid. Reuse explicit confirmation only while the verified identity, credential source, region and destination remain unchanged. An existing login, default profile, or supplied URI alone is neither identity verification nor approval. If the publication identity cannot be verified, stop before AWS writes and explain the missing capability.
 
-Prepare and test the image first where those steps do not write to AWS. Any change to account, role, profile/credential source, region, or destination invalidates confirmation; verify again and obtain a new confirmation before writes. The agent then performs the authorized build/push through the customer's AWS MCP and verifies the remote image. This does not authorize a local command fallback, new permissions, or evaluation: evaluations retain their separate client approval. Reader 0.1.2 and shared plugin 0.0.2 are unchanged.
+Prepare and test the image first where those steps do not write to AWS. Any change to account, role, profile/credential source, region, or destination invalidates confirmation; verify again and obtain a new confirmation before writes. The agent then performs the authorized build/push through the customer's AWS MCP and verifies the remote image. This does not authorize a local command fallback, new permissions, or evaluation: evaluations retain their separate client approval.
 
 ## Install
 
@@ -119,7 +119,7 @@ an unwritable configured path is an actionable setup error, not a reason to
 change filesystem permissions or conceal environment access from hooks.
 
 Native setup does not prove remote access. A signed HTTPS URL still requires
-correct Range responses through the customer's network/proxy. Reader0.1.2
+correct Range responses through the customer's network/proxy. The reader
 validates byte offsets and lengths, retries incomplete bodies within a fixed
 attempt limit, and rejects Range-ignored responses before reading their bodies.
 Persistent truncation must fail visibly. Use an already authorized remote execution capability when

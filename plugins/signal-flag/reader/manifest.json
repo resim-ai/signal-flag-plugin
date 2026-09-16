@@ -1,7 +1,7 @@
 {
   "python_version": "3.12",
-  "requirements_sha256": "274c6554bf5a1bbab4752003a13b9dea1a957c5a54c95be5062c0a6bf13f1c02",
-  "sha256": "086ba1716d08ca3401b9716d8b2ea85b7ffd75a6ac2ae69e1db1a9638c420a2c",
-  "source_revision": "10851de9431451dec0ec8530bcb6d614de3c1b62",
-  "wheel": "field_sessions_parser-0.1.2-py3-none-any.whl"
+  "requirements_sha256": "7001f36c5b6b38fc16c6db4ed2e12eefc399c24f19ab82a6611057b7a1c0a65b",
+  "sha256": "b54df11df2ce68c56ca7037cecb9b43a5747e30dddd549230a15f6d2ffdcb488",
+  "source_revision": "7f478e68bc3295527d0d99aa4c74d6b1010447be",
+  "wheel": "field_sessions_parser-0.2.0-py3-none-any.whl"
 }

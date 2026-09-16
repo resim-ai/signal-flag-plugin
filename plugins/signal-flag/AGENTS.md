@@ -21,7 +21,7 @@ pattern, not a bundled test suite or permission to change container policy.
 clean Linux Python 3.12 setup and subsequent `--check` inside a disposable image.
 Use the plugin root as its build context; this check installs no ReSim SDK.
 
-Reader0.1.2 requires exact HTTP206 byte ranges and rejects ignored-Range full
+The reader requires exact HTTP206 byte ranges and rejects ignored-Range full
 responses. Keep bounded truncation retries and credential-safe diagnostics in
 the backend reader; native setup success alone is not remote-read evidence.
 
