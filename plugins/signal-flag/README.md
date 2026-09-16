@@ -10,9 +10,9 @@ bundled native recording reader; it has no install hooks or workflow copy.
 `/signal-flag:explore-field-sessions [what to inspect, evaluate or add]` loads
 `explore-field-sessions` from the configured Signal Flag BFF through `get_skill`.
 The served resource `resim://skills/explore-field-sessions/SKILL.md` is the same
-workflow. Session context comes from the open Chrome app/S3 tab.
+workflow. Session context comes from an explicit link, ID or S3 folder, or the open Chrome tab when the request refers to it.
 
-The workflow registers folders as sessions, prepares customer metrics in the robot repository, directs the agent to build/push through the customer's AWS MCP, and verifies publication before registration. Before AWS writes or image publication, the person confirms the verified AWS identity and exact registry/repository destination as described below. The human separately approves the exact evaluation request in chat; honor any client permission prompt when presented. Later SQL-only metrics score existing evaluations.
+The workflow registers folders as sessions, prepares customer metrics in the robot repository, directs the agent to build/push through the customer's AWS MCP, and verifies publication before registration. Before AWS writes or image publication, the person confirms the verified AWS identity and exact registry/repository destination as described below. The human separately approves the exact evaluation request in chat; honor any client permission prompt. Automatic tool acceptance and the confirmation argument do not establish that approval. Later SQL-only metrics score existing evaluations.
 
 Use the plugin command to load the served skill through `get_skill`; there is no separate MCP prompt entry.
 
@@ -160,3 +160,7 @@ validation gates.
 ## Reader provenance
 
 The bundled reader wheel and dependency lock are verified against `reader/manifest.json` before installation. Its `source_repository` and full `source_revision` identify the committed source used to build the wheel. The source repository is public. Plugin version 0.0.7 bundles reader 0.2.3 unchanged from that build; installation does not require cloning the source repository.
+
+## Investigation and editing scope
+
+The served skills carry the question, verified signal meanings and exact selected evaluation through source analysis, computation and review. `author-session-metrics-build` owns editable customer source and synthetic SDK tests. Existing results or SQL over sufficient emissions can answer a question without a new image or evaluation. Saved browser definitions and rejection decisions remain authoritative; reusable configuration publication is separate from a historical chart edit. Interactive message sampling is unsupported; use summary metadata, existing emissions or requested Foxglove replay.
