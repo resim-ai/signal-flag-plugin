@@ -329,6 +329,7 @@ def setup(plugin: Path, state: Path, check: bool = False) -> dict:
                     json.dumps(
                         {
                             "bundle_id": identity,
+                            "source_repository": manifest.get("source_repository"),
                             "source_revision": manifest["source_revision"],
                         }
                     )
@@ -337,6 +338,7 @@ def setup(plugin: Path, state: Path, check: bool = False) -> dict:
     return {
         "status": "ready",
         "bundle_id": identity,
+        "source_repository": manifest.get("source_repository"),
         "source_revision": manifest["source_revision"],
         "python": str(python),
         "cli": str(runtime / "bin" / "field-sessions-parser"),

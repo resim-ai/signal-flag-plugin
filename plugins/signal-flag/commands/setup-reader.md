@@ -27,11 +27,7 @@ If an existing `UV_CACHE_DIR` or
 an authorized location; do not change permissions or sandbox rules. The user can
 set `SIGNAL_FLAG_READER_HOME` to an absolute writable state directory.
 
-Report the actual result and use the returned Python path for subsequent native
-reader snippets. No rerun checkout or PYTHONPATH is needed. This does not install
-`resim-open-core`, prove AWS access, prove HTTP Range works, or authorize execution
-of customer robot code. A blocked download or truncated signed-HTTPS response is
-a runtime limitation; do not download an MCAP locally or bypass the proxy/hooks.
+Report the actual result and use the returned Python path for subsequent native reader snippets. Use the returned CLI with `summary <recording.mcap>` for recorded metadata without message traversal. `inspect` decodes the complete recording and is not a default discovery step. A missing or malformed summary fails without a scan fallback; range caching can fetch neighboring bytes and is not a strict transfer budget. No rerun checkout or PYTHONPATH is needed. This does not install `resim-open-core`, prove AWS access, prove HTTP Range works, or authorize execution of customer robot code. A blocked download or truncated signed-HTTPS response is a runtime limitation; do not download an MCAP locally or bypass the proxy/hooks.
 
 For SDK/build tests, discover the customer's connected AWS/Finch MCP tools and
 their actual container execution/build/push capabilities. A connected server or

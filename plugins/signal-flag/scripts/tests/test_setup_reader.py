@@ -34,6 +34,7 @@ class SetupReaderTest(unittest.TestCase):
             "wheel": self.wheel.name,
             "sha256": reader.digest(self.wheel),
             "requirements_sha256": reader.digest(self.lock),
+            "source_repository": "https://github.com/resim-ai/field-sessions-parser",
             "source_revision": "a" * 40,
             "python_version": "3.12",
         }
@@ -69,6 +70,7 @@ class SetupReaderTest(unittest.TestCase):
         result, commands = self.install()
         self.assertEqual(result["status"], "ready")
         self.assertFalse(result["sdk_available"])
+        self.assertEqual(result["source_repository"], self.manifest["source_repository"])
         self.assertTrue(result["python"].startswith(str(self.state)))
         self.assertEqual(len(commands), 4)
         self.assertEqual(

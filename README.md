@@ -39,7 +39,7 @@ Use `project` or `local` instead of `user` when that is the installed scope. Run
 
 ## Recording inspection and image publication
 
-Registered-session metadata and Foxglove links need no Python runtime. The reader supports MCAP recordings, including JSON, ROS 1, ROS 2 and Protobuf messages inside MCAP. To inspect MCAP channels, schemas and values, run `/signal-flag:setup-reader`. The bootstrap requires Python 3.10+ and `uv`; it provisions an isolated Python 3.12 runtime with the bundled reader and pinned dependencies. No backend checkout or Linux SDK is required. Recording reads use bounded remote byte ranges; setup does not download recordings.
+Registered-session metadata and Foxglove links need no Python runtime. The reader supports MCAP recordings, including JSON, ROS 1, ROS 2 and Protobuf messages inside MCAP. To inspect MCAP channels, schemas and values, run `/signal-flag:setup-reader`. The bootstrap requires Python 3.10+ and `uv`; it provisions an isolated Python 3.12 runtime with the bundled reader and pinned dependencies. No backend checkout or Linux SDK is required. Use the returned CLI with `summary <recording.mcap>` for channels, schema definitions and recorded statistics without traversing messages. `inspect` decodes the complete recording and requires an intentional full scan; it is not the default discovery operation. Remote reads validate byte ranges, but range caching can fetch neighboring bytes and is not a strict total-transfer budget. Setup does not download recordings.
 
 Metrics images are built and pushed through the customer’s AWS MCP. Before AWS writes, Claude verifies the effective AWS account and role, shows the region and full destination registry/repository, and waits for explicit confirmation. Session evaluation has its own separate approval.
 
@@ -53,4 +53,4 @@ claude plugin validate .
 claude plugin validate ./plugins/signal-flag
 ```
 
-Version 0.0.5 includes the MCAP-only reader 0.2.0. The reader’s source revision and artifact hashes are recorded in [the manifest](plugins/signal-flag/reader/manifest.json). The wheel is distributed unchanged from that build.
+Release candidate 0.0.6 includes the MCAP-only reader 0.2.2, built from the exact source revision recorded with artifact hashes in [the manifest](plugins/signal-flag/reader/manifest.json). The source, tests and release tooling live in [field-sessions-parser](https://github.com/resim-ai/field-sessions-parser), which remains private pending explicit publication approval. The plugin bundles the wheel unchanged from that build and needs no source checkout; customers keep their metrics-build code in their own repository. This candidate has not been published.

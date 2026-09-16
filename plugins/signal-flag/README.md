@@ -89,6 +89,10 @@ rather than compiling dependencies or changing pins.
 
 The plugin bundles a `field-sessions-parser` wheel, native dependency hash lock, and source-commit/checksum manifest under `reader/`. The package is not fetched from PyPI and needs no private rerun checkout or `PYTHONPATH`. Native recording inspection supports MCAP files with JSON, ROS 1, ROS 2 or Protobuf messages; separate ROS bag, text, CSV, Parquet and HDF5 files are not supported. ROS decoding dependencies remain included for messages inside MCAP.
 
+After checking session metadata, compatible builds and relevant customer code, use `<returned-cli> summary <recording.mcap>` when recording metadata is needed. Reader 0.2.2 returns header, channels, schema definitions and recorded counts/time bounds without traversing, decompressing or decoding messages. Missing statistics are unknown; schema definitions do not establish observed values or signal meaning. Missing, oversized or malformed summaries fail without a scan or full-download fallback. Range caches can fetch neighboring payload bytes, so this is not a strict total-transfer budget.
+
+`<returned-cli> inspect <recording.mcap>` decodes the complete recording. Topic-filtered `iter_messages` can also traverse the entire file; neither is a bounded discovery sample. Full scans belong in the metrics job by default. A discovery sample needs a concrete purpose and bounded read scope; this reader has no bounded sampling API.
+
 Setup verifies hashes, installs only binary dependencies, checks dependency consistency and imports the MCAP decoding and remote-read dependencies before reporting ready. It also writes and decodes a tiny synthetic MCAP entirely in memory, checking exact nanoseconds. SDK/test dependencies are excluded from the native runtime.
 
 For direct invocation from this checkout:
@@ -98,13 +102,7 @@ python3 plugins/signal-flag/scripts/setup_reader.py
 python3 plugins/signal-flag/scripts/setup_reader.py --check
 ```
 
-In an installed plugin the command uses the actual
-`${CLAUDE_PLUGIN_ROOT}/scripts/setup_reader.py` path, as supported by
-[Claude Code's plugin reference](https://code.claude.com/docs/en/plugins-reference).
-Use the returned `python` path for reader snippets and `cli` path for full
-inspection. `--check` performs no installs or network calls. The runtime is keyed
-by the bundle contents and platform, so refreshing the plugin does not overwrite
-another bundle's runtime or alter the system Python.
+In an installed plugin the command uses the actual `${CLAUDE_PLUGIN_ROOT}/scripts/setup_reader.py` path, as supported by [Claude Code's plugin reference](https://code.claude.com/docs/en/plugins-reference). Use the returned `python` path for reader snippets and `cli` path for reader commands. `--check` performs no installs or network calls. The runtime is keyed by the bundle contents and platform, so refreshing the plugin does not overwrite another bundle's runtime or alter the system Python.
 
 The default writable state is `~/.cache/signal-flag/reader`, including dedicated
 uv cache and Python directories. If this default is unwritable, setup reports a
@@ -142,10 +140,7 @@ run tool. See [container tests](references/container-tests.md) for the shared
 job/test/runtime stage pattern and required emissions checks. A normal successful
 image build does not itself exercise its `ENTRYPOINT`.
 
-The backend owns wheel/lock generation and source provenance. Plugin release
-validation must exercise a clean installation on supported macOS and Linux,
-in addition to the source reader tests and actual Linux SDK image tests. Bootstrap
-logic tests alone do not establish native wheel or remote Range compatibility.
+The [field-sessions-parser repository](https://github.com/resim-ai/field-sessions-parser) owns the source, tests, wheel/lock generation and source provenance. Plugin release validation must exercise a clean installation on supported macOS and Linux, in addition to source reader tests and Linux SDK image tests. Bootstrap logic tests alone do not establish native wheel or remote Range compatibility.
 
 For the Linux native-reader release check, build
 [`references/native-reader-test.Dockerfile`](references/native-reader-test.Dockerfile)
@@ -164,4 +159,4 @@ validation gates.
 
 ## Reader provenance
 
-The bundled reader wheel and dependency lock are verified against `reader/manifest.json` before installation. The source revision identifies the internal backend build that produced the wheel; that source repository is not required for installation. This repository distributes the resulting artifact and bootstrap tests, not the internal backend build pipeline.
+The bundled reader wheel and dependency lock are verified against `reader/manifest.json` before installation. Its `source_repository` and full `source_revision` identify the committed source used to build the wheel. The source repository remains private pending explicit publication approval. This 0.0.6 release candidate bundles reader 0.2.2 unchanged from that build; installation does not require cloning the source repository.
