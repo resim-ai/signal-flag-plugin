@@ -178,7 +178,7 @@ SMOKE = """
 import importlib.metadata, io, json, sys
 assert sys.version_info[:2] == (3, 12), 'Python 3.12 is required'
 import field_sessions_parser, field_sessions_parser.reader, field_sessions_parser.remote
-import pyarrow.parquet, h5py, mcap, rosbags.highlevel, google.protobuf, boto3, lz4.frame, zstandard
+import mcap, rosbags.highlevel, google.protobuf, boto3, lz4.frame, zstandard
 try:
     importlib.metadata.distribution('resim-open-core')
 except importlib.metadata.PackageNotFoundError:
@@ -232,7 +232,7 @@ def setup(plugin: Path, state: Path, check: bool = False) -> dict:
     if platform.system() not in {"Darwin", "Linux"}:
         raise SetupError("Native reader setup currently supports macOS and Linux")
     if platform.system() == "Darwin" and int(platform.mac_ver()[0].split(".")[0]) < 12:
-        raise SetupError("The pinned PyArrow wheel requires macOS 12 or newer")
+        raise SetupError("Native reader setup requires macOS 12 or newer")
     manifest, wheel, lock, identity = bundle(plugin)
     runtime = state / "environments" / identity
     python = runtime / "bin" / "python"

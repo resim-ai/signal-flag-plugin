@@ -14,13 +14,7 @@ workflow. Session context comes from the open Chrome app/S3 tab.
 
 The workflow registers folders as sessions, prepares customer metrics in the robot repository, directs the agent to build/push through the customer's AWS MCP, and verifies publication before registration. Before AWS writes or image publication, the person confirms the verified AWS identity and exact registry/repository destination as described below. The human separately approves evaluations at the client's permission prompt. Later SQL-only metrics score existing evaluations.
 
-The BFF advertises the same workflow as the distinct MCP prompt
-`field-sessions-workflow`, with an optional `behaviours` argument. The plugin's
-public command remains `/signal-flag:explore-field-sessions`. Older BFFs advertise
-an MCP prompt with that same name; Claude can then show two similarly named
-entries. Choose the plugin entry rather than the one marked `(MCP)`. The legacy
-MCP prompt name remains accepted by the server for existing callers; legacy
-location arguments are request text, never folder discovery.
+Use the plugin command to load the served skill through `get_skill`; there is no separate MCP prompt entry.
 
 ## Prerequisites
 
@@ -76,9 +70,7 @@ plugins or MCP account mappings. From this repository:
 claude --chrome --plugin-dir ./plugins/signal-flag
 ```
 
-The local plugin takes precedence over an installed copy with the same name.
-After editing it, `/reload-plugins` refreshes the local plugin; reconnect a local
-MCP server through `/mcp` to refresh that server's separately cached prompt list.
+The local plugin takes precedence over an installed copy with the same name. After editing it, `/reload-plugins` refreshes the local plugin. The workflow is loaded from the connected server through `get_skill`.
 See [Claude Code's local plugin documentation](https://code.claude.com/docs/en/plugins#test-your-plugins-locally).
 
 ## Native recording inspection
@@ -95,14 +87,9 @@ Install `uv` through your approved package manager first. The pinned native whee
 target macOS 12+ (Apple Silicon or Intel) and Linux; unsupported platforms fail
 rather than compiling dependencies or changing pins.
 
-The plugin bundles a `field-sessions-parser` wheel, native dependency hash lock,
-and source-commit/checksum manifest under `reader/`. The package is not fetched
-from PyPI and needs no private rerun checkout or `PYTHONPATH`. All reader format
-dependencies are included: MCAP, ROS bags, text, Parquet and HDF5. Setup verifies
-hashes, installs only binary dependencies, checks dependency consistency and
-imports each format's dependencies before reporting ready. It also writes and
-decodes a tiny synthetic MCAP entirely in memory, checking exact nanoseconds.
-SDK/test dependencies are excluded from the native runtime.
+The plugin bundles a `field-sessions-parser` wheel, native dependency hash lock, and source-commit/checksum manifest under `reader/`. The package is not fetched from PyPI and needs no private rerun checkout or `PYTHONPATH`. Native recording inspection supports MCAP files with JSON, ROS 1, ROS 2 or Protobuf messages; separate ROS bag, text, CSV, Parquet and HDF5 files are not supported. ROS decoding dependencies remain included for messages inside MCAP.
+
+Setup verifies hashes, installs only binary dependencies, checks dependency consistency and imports the MCAP decoding and remote-read dependencies before reporting ready. It also writes and decodes a tiny synthetic MCAP entirely in memory, checking exact nanoseconds. SDK/test dependencies are excluded from the native runtime.
 
 For direct invocation from this checkout:
 

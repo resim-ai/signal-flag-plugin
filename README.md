@@ -39,7 +39,7 @@ Use `project` or `local` instead of `user` when that is the installed scope. Run
 
 ## Recording inspection and image publication
 
-Registered-session metadata and Foxglove links need no Python runtime. To inspect MCAP channels, schemas and values, run `/signal-flag:setup-reader`. The bootstrap requires Python 3.10+ and `uv`; it provisions an isolated Python 3.12 runtime with the bundled reader and pinned dependencies. No backend checkout or Linux SDK is required. Recording reads use bounded remote byte ranges; setup does not download recordings.
+Registered-session metadata and Foxglove links need no Python runtime. The reader supports MCAP recordings, including JSON, ROS 1, ROS 2 and Protobuf messages inside MCAP. To inspect MCAP channels, schemas and values, run `/signal-flag:setup-reader`. The bootstrap requires Python 3.10+ and `uv`; it provisions an isolated Python 3.12 runtime with the bundled reader and pinned dependencies. No backend checkout or Linux SDK is required. Recording reads use bounded remote byte ranges; setup does not download recordings.
 
 Metrics images are built and pushed through the customer’s AWS MCP. Before AWS writes, Claude verifies the effective AWS account and role, shows the region and full destination registry/repository, and waits for explicit confirmation. Session evaluation has its own separate approval.
 

@@ -24,3 +24,5 @@ Use the plugin root as its build context; this check installs no ReSim SDK.
 Reader0.1.2 requires exact HTTP206 byte ranges and rejects ignored-Range full
 responses. Keep bounded truncation retries and credential-safe diagnostics in
 the backend reader; native setup success alone is not remote-read evidence.
+
+The native reader supports MCAP only, including JSON, ROS 1, ROS 2 and Protobuf messages inside MCAP. Keep the bootstrap smoke imports aligned with those decoding dependencies; do not require HDF5 or Parquet libraries. The public command loads the served workflow through `get_skill`, without a separate MCP prompt surface.
