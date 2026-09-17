@@ -1,7 +1,7 @@
 {
   "name": "signal-flag",
   "version": "0.0.8",
-  "description": "Signal Flag session exploration through MCP, with an isolated Python reader setup for recording inspection.",
+  "description": "Create and review new metrics over existing ReSim datalake data through MCP.",
   "author": {
     "name": "ReSim Engineering",
     "email": "eng@resim.ai"

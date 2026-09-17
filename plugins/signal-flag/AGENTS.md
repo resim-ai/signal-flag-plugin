@@ -1,25 +1,9 @@
 # Signal Flag plugin
 
-This is a Claude Code plugin. Preserve `.claude-plugin/plugin.json` and the
-existing marketplace/account configuration; do not add Codex plugin metadata.
+This is a Claude Code plugin. Preserve `.claude-plugin/plugin.json` and existing marketplace/account configuration; do not add Codex plugin metadata.
 
-`commands/` contains the workflow entry point and explicit reader setup command. `scripts/setup_reader.py` verifies the bundled `reader/` wheel, dependency lock and provenance manifest, then creates an isolated Python 3.12 inspection runtime. `scripts/tests/test_setup_reader.py` covers integrity and bootstrap isolation. The `resim-ai/field-sessions-parser` repository owns the reader source and release artifacts and is public; do not patch wheel contents or maintain another reader implementation here.
+`commands/explore-field-sessions.md` loads the served metric-only workflow through `get_skill`. Keep the command aligned with the BFF skill: existing datalake data, new metric names, real previews, grouped review and publication. The plugin contains no reader, setup scripts, build recipes or workflow copy.
 
-No install hooks, policy changes, local recording copies or SDK installation are
-part of native setup. Run the setup tests with Python's standard-library unittest.
-Mac/Linux real installs and container SDK tests are separate validation gates.
+Missing data must not route into recording/repository inspection, registration, new emissions, image publication or evaluation. Keep exact historical preview pins, saved browser edits and revision-bound approval. Reusable configuration publication and instance-only chart creation remain distinct outcomes.
 
-`references/container-tests.md` documents the Finch MCP test-build route with
-explicit entrypoint execution and synthetic emissions validation. It is a stage
-pattern, not a bundled test suite or permission to change container policy.
-`references/native-reader-test.Dockerfile` tests the bundled native reader's
-clean Linux Python 3.12 setup and subsequent `--check` inside a disposable image.
-Use the plugin root as its build context; this check installs no ReSim SDK.
-
-The reader requires exact HTTP206 byte ranges and rejects ignored-Range full responses. Keep bounded truncation retries and credential-safe diagnostics in the reader package; native setup success alone is not remote-read evidence.
-
-The native reader supports MCAP only, including JSON, ROS 1, ROS 2 and Protobuf messages inside MCAP. Keep the bootstrap smoke imports aligned with those decoding dependencies; do not require HDF5 or Parquet libraries. The public command loads the served workflow through `get_skill`, without a separate MCP prompt surface.
-
-The bundled reader 0.2.3 provides `summary` for metadata-only discovery. `inspect` traverses and decodes the complete recording; never use it as default discovery. Summary failures do not authorize full scans, recovery or local recording downloads.
-
-`explore-field-sessions` owns registration, summary inspection, replay, signal interpretation and approved evaluation. `author-session-metrics-build` owns editable customer source and synthetic SDK tests. The existing `author-metrics-config` skill owns SQL-only chart editing, grouped review and reusable publication. Chart edits retain exact historical scope. The command requires explicit human chat approval of a concrete evaluation request, separately from registry confirmation, and honors client prompts without treating automatic acceptance as approval. Interactive message sampling is unsupported; use the served summary-only procedure or requested Foxglove replay.
+Validate plugin and marketplace JSON, local links, and both plugin directories with the installed Claude plugin validator. Keep release versions aligned. Public publication requires separate maintainer confirmation.

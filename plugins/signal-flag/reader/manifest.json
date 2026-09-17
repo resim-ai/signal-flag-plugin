@@ -1,8 +1,0 @@
-{
-  "python_version": "3.12",
-  "requirements_sha256": "7001f36c5b6b38fc16c6db4ed2e12eefc399c24f19ab82a6611057b7a1c0a65b",
-  "sha256": "e588e15e49412a236196e9bfd90fc6c43bc7d428916581d5e3dcd96b30583e04",
-  "source_repository": "https://github.com/resim-ai/field-sessions-parser",
-  "source_revision": "dfac5b3b414a4c5f0c65ce160c989ef5f59a350f",
-  "wheel": "field_sessions_parser-0.2.3-py3-none-any.whl"
-}

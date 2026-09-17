@@ -1,10 +1,10 @@
 # Signal Flag for Claude Code
 
-Explore robot recording sessions, develop metrics with Claude, and review metrics in the ReSim web app. The plugin connects to your organization’s Signal Flag MCP environment and bundles an optional native recording reader.
+Create new metrics using data already available in your ReSim datalake, then review them in the existing metric editor. The plugin connects to your organization's Signal Flag MCP environment; it requires no recording reader or AWS connection.
 
 ## Install
 
-Run these commands from your robot repository or another working directory. No ReSim source checkout is required:
+Run these commands from the directory where you will use Claude. No source checkout is required:
 
 ```bash
 claude plugin marketplace add resim-ai/signal-flag-plugin
@@ -24,7 +24,7 @@ Replace `YOUR_RESIM_MCP_URL` with the endpoint provided for your environment. In
 /signal-flag:explore-field-sessions
 ```
 
-The marketplace is public. Access to your ReSim organization and AWS resources uses your own authorized accounts. Local MCP configuration belongs to the current working directory; launch Claude there. Keep existing environment/account connections intact and select the matching one if it already exists.
+The marketplace is public. Access to your ReSim organization uses your own authorized account. Local MCP configuration belongs to the current working directory; launch Claude there. Keep existing environment/account connections intact and select the matching one if it already exists.
 
 ## Update an existing installation
 
@@ -37,20 +37,19 @@ claude plugin update signal-flag@signal-flag-plugins --scope user
 
 Use `project` or `local` instead of `user` when that is the installed scope. Run `/reload-plugins` in an existing Claude session. If you previously installed `signal-flag@resim-tools` from the internal marketplace, disable that copy in its installed scope through `/plugin` before enabling this public copy; keep its MCP connections. Choose one active Signal Flag installation to avoid duplicate commands. The internal `resim-shared` plugin is not required.
 
-## Recording inspection and image publication
+## Metric-only workflow
 
-Registered-session metadata and Foxglove links need no Python runtime. The reader supports MCAP recordings, including JSON, ROS 1, ROS 2 and Protobuf messages inside MCAP. To inspect MCAP channels, schemas and values, run `/signal-flag:setup-reader`. The bootstrap requires Python 3.10+ and `uv`; it provisions an isolated Python 3.12 runtime with the bundled reader and pinned dependencies. No backend checkout or Linux SDK is required. Use the returned CLI with `summary <recording.mcap>` for channels, schema definitions and recorded statistics without traversing messages. `inspect` decodes the complete recording and requires an intentional full scan; it is not the default discovery operation. Remote reads validate byte ranges, but range caching can fetch neighboring bytes and is not a strict total-transfer budget. Setup does not download recordings.
+Ask for a new metric and provide the existing session or dataset context. Claude checks available data, proposes unused metric names, previews against a compatible existing instance, and prepares grouped review. Missing fields and unavailable previews are reported explicitly.
 
-Metrics images are built and pushed through the customer’s AWS MCP. Before AWS writes, Claude verifies the effective AWS account and role, shows the region and full destination registry/repository, and waits for explicit confirmation. Session evaluation has its own separate approval.
+The workflow does not inspect recordings or repositories, register sessions, install readers, develop emissions, publish metrics images or launch evaluations. Publishing reusable metric configuration is distinct from adding a chart to a historical instance.
 
-See the [plugin guide](plugins/signal-flag/README.md) for reader setup, AWS confirmation, Linux SDK tests and troubleshooting.
+See the [plugin guide](plugins/signal-flag/README.md) for scope, review and connection requirements.
 
 ## Validation
 
 ```bash
-python3 -m unittest discover -s plugins/signal-flag/scripts/tests -p 'test_*.py'
 claude plugin validate .
 claude plugin validate ./plugins/signal-flag
 ```
 
-Plugin version 0.0.8 includes the MCAP-only reader 0.2.3, built from the exact source revision recorded with artifact hashes in [the manifest](plugins/signal-flag/reader/manifest.json). The source, tests and release tooling live in [field-sessions-parser](https://github.com/resim-ai/field-sessions-parser), which is public. The plugin bundles the wheel unchanged from that build and needs no source checkout; customers keep their metrics-build code in their own repository.
+Plugin and marketplace versions must stay aligned. Publication is a separate maintainer-approved step.

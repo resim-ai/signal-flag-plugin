@@ -1,6 +1,6 @@
 {
   "name": "signal-flag-plugins",
-  "description": "Signal Flag session exploration for Claude Code.",
+  "description": "Signal Flag datalake metric authoring for Claude Code.",
   "owner": {
     "name": "ReSim"
   },
