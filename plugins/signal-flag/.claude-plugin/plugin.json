@@ -1,6 +1,6 @@
 {
   "name": "signal-flag",
-  "version": "0.0.9",
+  "version": "0.0.1",
   "description": "Create and review new metrics over existing ReSim datalake data through MCP.",
   "author": {
     "name": "ReSim Engineering",
